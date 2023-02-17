@@ -1,4 +1,3 @@
-import { ResourceListOptions } from "@/types/common";
 import { Pokemon } from "@/types/pokemon";
 
 export const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
