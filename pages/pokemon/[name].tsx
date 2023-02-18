@@ -1,13 +1,11 @@
 import Image from 'next/image';
-import type { Pokemon } from '../../types/pokemon';
 import {
     IMAGE_BASE_URL,
     getAllPokemonNamedResources,
     getPokemonByName,
 } from '../api/pokemon';
-import { useRouter } from 'next/router';
 import { titleCase } from '@/utils/pokemon-names';
-import { QueryClient, dehydrate, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import Typography from '@/components/atoms/Typography';
 import { NamedResource } from '@/types/common';
 
