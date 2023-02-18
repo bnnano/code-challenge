@@ -1,14 +1,58 @@
-import Image from "next/image";
-import type { Pokemon } from "../../types/pokemon";
+import Image from 'next/image';
+import type { Pokemon } from '../../types/pokemon';
+import {
+    IMAGE_BASE_URL,
+    getAllPokemonNamedResources,
+    getPokemonByName,
+} from '../api/pokemon';
+import { useRouter } from 'next/router';
+import { titleCase } from '@/utils/pokemon-names';
+import { QueryClient, dehydrate, useQuery } from 'react-query';
+import Typography from '@/components/atoms/Typography';
+import { NamedResource } from '@/types/common';
 
+export interface PokemonDetailPageProps {
+    name: string;
+}
 
-const PokemonDetailPage = (props: Pokemon) => {
+export interface PageParams extends PokemonDetailPageProps {}
+
+const PokemonDetailPage = (props: PokemonDetailPageProps) => {
     const { name } = props;
-    const imageUrl = `https://bulbapedia.bulbagarden.net/wiki/${name}`;
-    return (<div>
-        <Image alt={name} src={imageUrl} />
-        <h1>{name}</h1>
-    </div>);
+    const { data: pokemon } = useQuery(['pokemon', name], async () =>
+        getPokemonByName(name)
+    );
+    const imageUrl = `${IMAGE_BASE_URL}/${name}.jpg`;
+
+    return (
+        <div>
+            <Image alt={name} src={imageUrl} width={200} height={200} />
+            <Typography variant="header">{titleCase(name)}</Typography>
+        </div>
+    );
+};
+
+export async function getStaticPaths() {
+    const allPokemon = await getAllPokemonNamedResources();
+    return {
+        paths: allPokemon.results.map((pokemon: NamedResource) => {
+            const { name } = pokemon;
+            return {
+                params: {
+                    name,
+                },
+            };
+        }),
+        fallback: false,
+    };
+}
+
+export async function getStaticProps({ params }: { params: PageParams }) {
+    const { name } = params;
+
+    return {
+        props: { name },
+    };
 }
 
 export default PokemonDetailPage;

@@ -1,4 +1,4 @@
-import { NamedResource } from "./common";
+import { NamedResource } from './common';
 
 export interface Pokemon {
     id: number;
@@ -14,7 +14,7 @@ export interface Pokemon {
 }
 
 export interface PokemonMove {
-    move: NamedResource
+    move: NamedResource;
 }
 
 export interface PokemonStat {
@@ -25,5 +25,29 @@ export interface PokemonStat {
 
 export interface PokemonType {
     slot: number;
-    type: NamedResource
+    type: NamedResource;
+}
+
+export interface PokeminListResponse {
+    results: NamedResource[];
+}
+
+export interface FlavorText {
+    flavor_text: string;
+    language: NamedResource;
+}
+
+export interface PokemonSpecies {
+    flavor_text_entries: FlavorText[];
+}
+
+export interface PokemonSummary {
+    name: string;
+    types: string[];
+    description: string;
+}
+
+export interface PokemonListResponse {
+    count: number;
+    results: NamedResource[];
 }

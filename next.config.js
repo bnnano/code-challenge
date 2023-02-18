@@ -11,6 +11,15 @@ const nextConfig = {
             },
         ],
     },
+    async redirects() {
+        return [
+            {
+                source: '/pokemon/',
+                destination: '/',
+                permanent: true,
+            },
+        ];
+    },
 };
 
 module.exports = nextConfig;

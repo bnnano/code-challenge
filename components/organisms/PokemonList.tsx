@@ -1,7 +1,7 @@
 import { Pokemon } from '@/types/pokemon';
 import SearchableContent from './SearchableContent';
 import Card, { CardProps } from '../molecules/Card';
-import { IMAGE_BASE_URL, getAllPokemon } from '@/pages/api/pokemon';
+import { IMAGE_BASE_URL, getPokemonChunk } from '@/pages/api/pokemon';
 import Link from 'next/link';
 import Typography from '../atoms/Typography';
 import Grid from '../layouts/Grid';
@@ -35,20 +35,19 @@ const PokemonList = () => {
     const { data } = useInfiniteQuery({
         queryKey: ['pokemon'],
         queryFn: async ({ pageParam = 0 }) => {
-            const pokemon = await getAllPokemon(pageParam);
-            return pokemon;
+            return getPokemonChunk(pageParam);
         },
-        getNextPageParam: (lastPage, pages) => {
-            return pages.length + 1;
+        getNextPageParam: (lastPage) => {
+            return lastPage.nextChunk;
         },
     });
 
     return (
         <SearchableContent>
-            {data?.pages.map((pokemon, index) => {
+            {data?.pages.map((pokemonChunk, index) => {
                 return (
                     <Grid key={`page${index}`}>
-                        {pokemon
+                        {pokemonChunk.pokemon
                             .map(mapPokemonDataToCardData)
                             .map((cardData: CardProps) => (
                                 <Card key={cardData.id} {...cardData} />

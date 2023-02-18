@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
 import { QueryClient, dehydrate } from 'react-query';
-import { getAllPokemon } from './api/pokemon';
+import { getPokemonChunk } from './api/pokemon';
 import PageHeader from '@/components/organisms/PageHeader';
 import PokemonList from '@/components/organisms/PokemonList';
 
@@ -34,7 +34,7 @@ export async function getServerSideProps() {
     const queryClient = new QueryClient();
     await queryClient.prefetchInfiniteQuery({
         queryKey: ['pokemon'],
-        queryFn: async () => getAllPokemon(),
+        queryFn: async () => getPokemonChunk(),
         initialData: {
             pages: [[]],
             pageParams: [0],
