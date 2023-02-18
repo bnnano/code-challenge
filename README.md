@@ -37,7 +37,7 @@ The challenge requires you to:
 
 ## Implementation Details
 
-Please follow the component-driven development and atomic design patterns as closely as possible. 
+Please follow the component-driven development and atomic design patterns as closely as possible.
 
 In order to ensure the quality of the code, please make sure to:
 
