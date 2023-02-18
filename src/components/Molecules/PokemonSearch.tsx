@@ -8,12 +8,12 @@ export default function PokemonSearch() {
 		state.mode,
 		state.toogleMode,
 		state.updateSearchResult])
-
     if(!searchResult){
         return <>This Pokemon doesn't exist</>
     }
     return <>
     <Section
+        data-testid='search-section'
         size="3"
         css={{
             textAlign: "center",

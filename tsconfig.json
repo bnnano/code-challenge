@@ -17,8 +17,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": [
+      "jest"
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/__tests__/components/Layout.test.tsx", "__mocks__/zustand.js"],
   "exclude": ["node_modules"]
 }

@@ -3,8 +3,8 @@ import { useInfiniteQuery } from "react-query";
 import React from "react";
 import { Container, Grid, Section } from "@modulz/design-system";
 import PokemonCard from "../Molecules/PokemonCard";
-import { Pokemon } from "@/types";
 import { fetchPokemons } from "@/utils";
+import { Pokemon } from "@/types";
 
 export default function PokemonAll() {
 	const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(

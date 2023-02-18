@@ -13,7 +13,7 @@ export default function PokemonCard({ title }: Props) {
             <Card
                 css={{ p: '$3'}}
             >
-                <div style={{ textAlign: 'center'}}>
+                <div data-testid='pokemon-card' style={{ textAlign: 'center'}}>
                     <Image
                         src={`https://img.pokemondb.net/artwork/large/${title}.jpg`}
                         alt="Picture of the author"

@@ -58,7 +58,7 @@ export default function SearchSection() {
 						<Search value={searchValue} onChange={onChangeSearch} />
 					</Box>
 					<Box>
-						<Button text="Search" onClick={onClickSearch} />
+						<Button id='search-button' text="Search" onClick={onClickSearch} />
 					</Box>
 				</Grid>
 			</Container>

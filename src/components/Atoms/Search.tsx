@@ -15,6 +15,7 @@ export default function Search({ value, onChange }: Props) {
                 height: '$7'
             }}
             placeholder='Search..'
+            data-testid='search-input'
         />
     )
 }
