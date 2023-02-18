@@ -1,0 +1,36 @@
+import { useSearchStore } from "@/store";
+import { Container, Grid, Section } from "@modulz/design-system";
+import PokemonCard from "./PokemonCard";
+
+export default function PokemonSearch() {
+    const [searchResult] = useSearchStore((state) => [
+        state.searchResult,
+		state.mode,
+		state.toogleMode,
+		state.updateSearchResult])
+
+    if(!searchResult){
+        return <>This Pokemon doesn't exist</>
+    }
+    return <>
+    <Section
+        size="3"
+        css={{
+            textAlign: "center",
+            width: "100%",
+            paddingTop: "0px",
+        }}
+    >
+        <Container size="3">
+            <Grid
+                css={{
+                    textAlign: "start",
+                    gridTemplateColumns: "repeat(3, 1fr)",
+                }}
+            >
+                <PokemonCard title={searchResult.name} />
+            </Grid>
+        </Container>
+    </Section>
+</>
+}
