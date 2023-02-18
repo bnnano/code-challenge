@@ -9,10 +9,12 @@ import Search from "../Atoms/Search";
 
 export default function SearchSection() {
 	const [searchValue, setSearchValue] = useState("");
-	const [mode ,toogleMode, updateSearchResult] = useSearchStore((state) => [
+	const [mode ,toogleMode, updateSearchResult, updateIsLoading] = useSearchStore((state) => [
 		state.mode,
 		state.toogleMode,
-		state.updateSearchResult])
+		state.updateSearchResult,
+		state.updateIsLoading
+	])
 
 	const onClickSearch = useCallback(async () => {
 		if(!searchValue){
@@ -21,15 +23,18 @@ export default function SearchSection() {
 		if(mode !== DISPLAY_MODES.SEARCH){
 			toogleMode();
 		}
+		updateIsLoading(true);
 		try {
 			const pokemon = await fetchSearch(searchValue);
+			updateIsLoading(false);
 			updateSearchResult(pokemon);
 		} catch (error) {
 			console.log('errorFetchingSearch', error);
+			updateIsLoading(false);
 			updateSearchResult(null);
 		}
 
-	}, [searchValue])
+	}, [searchValue, mode])
 
 	const onChangeSearch = (value: string) => {
 		if(!value && mode === DISPLAY_MODES.SEARCH){

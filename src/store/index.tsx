@@ -7,16 +7,20 @@ export interface SearchState {
   toogleMode: () => void;
   updateSearchResult: (payload: Pokemon | null) => void;
   mode: Mode;
+  isLoading: boolean;
+  updateIsLoading: (value: boolean) => void;
 };
 
 export const useSearchStore = create<SearchState>()((set) => ({
   mode: 'grid',
   toogleMode: () => set((state) => {
     if(state.mode === 'grid'){
-      return ({mode: 'search'})
+      return ({ mode: 'search' })
     }
-    return ({mode: 'grid'})
+    return ( {mode: 'grid' })
   }),
   searchResult: null,
+  isLoading: false,
   updateSearchResult: (payload: Pokemon | null) => set(() => ({ searchResult: payload })),
+  updateIsLoading: (value: boolean) => set(() => ({ isLoading: value })),
 }))

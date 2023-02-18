@@ -1,15 +1,12 @@
 import { useSearchStore } from "@/store";
-import { Container, Grid, Section } from "@modulz/design-system";
+import { Container, Grid, Section, Text } from "@modulz/design-system";
 import PokemonCard from "./PokemonCard";
 
 export default function PokemonSearch() {
-    const [searchResult] = useSearchStore((state) => [
-        state.searchResult,
-		state.mode,
-		state.toogleMode,
-		state.updateSearchResult])
+    const searchResult = useSearchStore((state) => state.searchResult);
+
     if(!searchResult){
-        return <>This Pokemon doesn't exist</>
+        return <Text>This Pokemon doesn't exist</Text>
     }
     return <>
     <Section
