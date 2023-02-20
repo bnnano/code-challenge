@@ -12,9 +12,11 @@ export const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 export const IMAGE_BASE_URL = 'https://img.pokemondb.net/artwork/large';
 export const WIKI_URL = 'https://bulbapedia.bulbagarden.net/wiki';
 
-export async function getPokemonChunk(offset: number = 0, limit: number = 6) {
+export async function getPokemonChunk(offset: number = 0, limit: number = 12) {
     const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${
+            offset * limit
+        }`
     );
     const data = await response.json();
     const maxNumberOfChunks = getMaxChunks(data.count, limit);
@@ -23,6 +25,7 @@ export async function getPokemonChunk(offset: number = 0, limit: number = 6) {
     const individualPokemonRequests =
         data?.results?.map?.(getPokemonDataSummary) ?? [];
     const pokemon = await Promise.all(individualPokemonRequests);
+
     return {
         nextChunk,
         pokemon,
@@ -37,6 +40,7 @@ export async function getPokemonDataSummary(
     const speciesResponse = await fetch(pokemonData.species.url);
     const speciesData = await speciesResponse.json();
     return {
+        id: pokemonData.id,
         name: pokemonData.name,
         types: extractPokemonTypeNames(pokemonData.types),
         description: extractPokemonLatestEnglishFlavorText(speciesData),
@@ -66,8 +70,10 @@ export async function getAllPokemonNamedResources(): Promise<PokemonListResponse
     return response.json();
 }
 
-export async function getPokemonByName(name: string): Promise<Pokemon> {
-    const response = await fetch(`${BASE_URL}/${name}`);
-    const data = await response.json();
-    return data;
+export async function getPokemonByName(name: string): Promise<PokemonSummary> {
+    const pokemonNamedResource: NamedResource = {
+        name,
+        url: `${BASE_URL}/${name}`,
+    };
+    return getPokemonDataSummary(pokemonNamedResource);
 }
