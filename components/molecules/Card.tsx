@@ -21,7 +21,7 @@ const Card = (props: CardProps) => {
                 <Image alt={alt} {...restImageProps} />
             </header>
             <main>
-                <Typography variant="title">{title}</Typography>
+                <Typography variant="cardTitle">{title}</Typography>
                 <Typography>{description}</Typography>
             </main>
             <footer>{actionSection}</footer>
