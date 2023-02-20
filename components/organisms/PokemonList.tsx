@@ -1,14 +1,15 @@
-import { Pokemon } from '@/types/pokemon';
+import { PokemonSummary } from '@/types/pokemon';
 import SearchableContent from './SearchableContent';
 import Card, { CardProps } from '../molecules/Card';
-import { IMAGE_BASE_URL, getPokemonChunk } from '@/pages/api/pokemon';
-import Link from 'next/link';
+import { IMAGE_BASE_URL, WIKI_URL, getPokemonChunk } from '@/pages/api/pokemon';
 import Typography from '../atoms/Typography';
 import Grid from '../layouts/Grid';
 import { useInfiniteQuery } from 'react-query';
 import { titleCase } from '@/utils/pokemon-names';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
-const mapPokemonDataToCardData = (pokemon: Pokemon): CardProps => {
+const mapPokemonDataToCardData = (pokemon: PokemonSummary): CardProps => {
     const displayName = titleCase(pokemon.name);
 
     const imageProps = {
@@ -17,22 +18,25 @@ const mapPokemonDataToCardData = (pokemon: Pokemon): CardProps => {
         width: 100,
         height: 100,
     };
-    const pokemonDetailUrl = `/pokemon/${pokemon.name}`;
+    const pokemonDetailUrl = `${WIKI_URL}/${pokemon.name}`;
     const actionSection = (
-        <Link href={pokemonDetailUrl}>
+        <a href={pokemonDetailUrl} rel="noreferrer" target="_blank">
             <Typography variant="link">Details</Typography>
-        </Link>
+        </a>
     );
     return {
         id: pokemon?.id?.toString?.() ?? pokemon.name ?? Date.now(),
         imageProps,
         title: displayName,
+        description: pokemon.description,
         actionSection,
     };
 };
 
 const PokemonList = () => {
-    const { data } = useInfiniteQuery({
+    const { ref, inView } = useInView();
+
+    const { data, fetchNextPage } = useInfiniteQuery({
         queryKey: ['pokemon'],
         queryFn: async ({ pageParam = 0 }) => {
             return getPokemonChunk(pageParam);
@@ -41,6 +45,10 @@ const PokemonList = () => {
             return lastPage.nextChunk;
         },
     });
+
+    useEffect(() => {
+        fetchNextPage();
+    }, [inView, fetchNextPage]);
 
     return (
         <SearchableContent>
@@ -55,6 +63,7 @@ const PokemonList = () => {
                     </Grid>
                 );
             })}
+            <div ref={ref}>Load More</div>
         </SearchableContent>
     );
 };
