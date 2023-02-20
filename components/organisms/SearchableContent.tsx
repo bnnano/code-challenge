@@ -7,7 +7,7 @@ const SearchableContent = (props: SearchableContentProps) => {
     const { children } = props;
     return (
         <div>
-            <SearchBar></SearchBar>
+            <SearchBar />
             {children}
         </div>
     );
