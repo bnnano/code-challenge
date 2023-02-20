@@ -42,6 +42,7 @@ export interface PokemonSpecies {
 }
 
 export interface PokemonSummary {
+    id: number;
     name: string;
     types: string[];
     description: string;
