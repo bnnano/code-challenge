@@ -8,6 +8,9 @@ import { titleCase } from '@/utils/pokemon-names';
 import { useQuery } from 'react-query';
 import Typography from '@/components/atoms/Typography';
 import { NamedResource } from '@/types/common';
+import { PokemonSummary } from '@/types/pokemon';
+import Stack from '@/components/layouts/Stack';
+import PokemonType from '@/components/molecules/PokemonType';
 
 export interface PokemonDetailPageProps {
     name: string;
@@ -15,10 +18,18 @@ export interface PokemonDetailPageProps {
 
 export interface PageParams extends PokemonDetailPageProps {}
 
-const PokemonDetailPage = (props: PokemonDetailPageProps) => {
+const PokemonDetailPage = (props: PokemonSummary) => {
     const { name } = props;
-    const { data: pokemon } = useQuery(['pokemon', name], async () =>
-        getPokemonByName(name)
+    const placeholderPokemonSummary = {
+        id: 0,
+        name,
+        types: [],
+        description: '',
+    };
+    const { data: pokemon } = useQuery(
+        ['pokemon', name],
+        async () => getPokemonByName(name),
+        { initialData: placeholderPokemonSummary }
     );
     const imageUrl = `${IMAGE_BASE_URL}/${name}.jpg`;
 
@@ -26,6 +37,11 @@ const PokemonDetailPage = (props: PokemonDetailPageProps) => {
         <div>
             <Image alt={name} src={imageUrl} width={200} height={200} />
             <Typography variant="header">{titleCase(name)}</Typography>
+            <Stack>
+                {pokemon?.types?.map?.((type: string) => (
+                    <PokemonType key={type} type={type} />
+                ))}
+            </Stack>
         </div>
     );
 };
