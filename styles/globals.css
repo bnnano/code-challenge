@@ -1,3 +1,5 @@
+/* Based off Josh W. Comeau's CSS Reset Stylesheet */
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -66,4 +68,10 @@ h6 {
 #root,
 #__next {
     isolation: isolate;
+}
+/*
+  10. Remove underlining of link tags (a)
+*/
+a {
+    text-decoration: none;
 }
