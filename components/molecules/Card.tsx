@@ -7,18 +7,24 @@ export interface CardProps {
     id?: string;
     imageProps: ImageProps;
     title: string;
+    description: string;
     actionSection?: ReactElement;
 }
 
 const Card = (props: CardProps) => {
     const { imageProps } = props;
     const { alt, ...restImageProps } = imageProps;
-    const { title, actionSection } = props;
+    const { title, description, actionSection } = props;
     return (
         <Stack>
-            <Image alt={alt} {...restImageProps} />
-            <Typography variant="title">{title}</Typography>
-            {actionSection}
+            <header>
+                <Image alt={alt} {...restImageProps} />
+            </header>
+            <main>
+                <Typography variant="title">{title}</Typography>
+                <Typography>{description}</Typography>
+            </main>
+            <footer>{actionSection}</footer>
         </Stack>
     );
 };
