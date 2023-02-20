@@ -9,12 +9,18 @@ const nextConfig = {
                 port: '',
                 pathname: '/artwork/large/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'bulbapedia.bulbagarden.net',
+                port: '',
+                pathname: '/wiki/**',
+            },
         ],
     },
     async redirects() {
         return [
             {
-                source: '/pokemon/',
+                source: '/pokemon',
                 destination: '/',
                 permanent: true,
             },
