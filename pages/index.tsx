@@ -10,6 +10,8 @@ import SearchableContent from '@/components/organisms/SearchableContent';
 import { ChangeEvent } from 'react';
 import useInputStore from '@/store';
 import SinglePokemon from '@/components/organisms/SinglePokemon';
+import Grid from '@/components/layouts/Grid';
+import Stack from '@/components/layouts/Stack';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +24,7 @@ export default function Home() {
     const changeText = useInputStore((state) => state.changeText);
 
     return (
-        <HomeContainer>
+        <>
             <Head>
                 <title>Create Next App</title>
                 <meta
@@ -37,7 +39,7 @@ export default function Home() {
             </Head>
             <main className={inter.className}>
                 <PageHeader title="Bannano Frontend Challenge" />
-                <Container size="2" padding="1">
+                <Container padding={1}>
                     <SearchableContent
                         placeholder="Type a Pokémon name"
                         buttonText="Search"
@@ -52,7 +54,7 @@ export default function Home() {
                     </SearchableContent>
                 </Container>
             </main>
-        </HomeContainer>
+        </>
     );
 }
 
