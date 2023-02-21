@@ -9,7 +9,6 @@ const Input = styled('input', {
     height: '56px',
     border: 'none',
     padding: '$4',
-    flexGrow: 1,
     variants: {
         variant: {
             searchBar: {
