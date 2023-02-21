@@ -1,15 +1,28 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
-import { QueryClient, dehydrate } from 'react-query';
+import { QueryClient, dehydrate, useQuery } from 'react-query';
 import { getPokemonChunk } from './api/pokemon';
 import PageHeader from '@/components/organisms/PageHeader';
 import PokemonList from '@/components/organisms/PokemonList';
+import Container from '@/components/layouts/Container';
+import { styled } from '@/stitches.config';
+import SearchableContent from '@/components/organisms/SearchableContent';
+import { ChangeEvent } from 'react';
+import useInputStore from '@/store';
+import SinglePokemon from '@/components/organisms/SinglePokemon';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const HomeContainer = styled(Container, {
+    backgroundColor: '$lightGrey',
+});
+
 export default function Home() {
+    const inputText = useInputStore((state) => state.inputText);
+    const changeText = useInputStore((state) => state.changeText);
+
     return (
-        <>
+        <HomeContainer>
             <Head>
                 <title>Create Next App</title>
                 <meta
@@ -22,11 +35,24 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main>
+            <main className={inter.className}>
                 <PageHeader title="Bannano Frontend Challenge" />
-                <PokemonList />
+                <Container size="2" padding="1">
+                    <SearchableContent
+                        placeholder="Type a Pokémon name"
+                        buttonText="Search"
+                        onSubmit={changeText}
+                        onClear={() => changeText('')}
+                    >
+                        {inputText ? (
+                            <SinglePokemon name={inputText} />
+                        ) : (
+                            <PokemonList />
+                        )}
+                    </SearchableContent>
+                </Container>
             </main>
-        </>
+        </HomeContainer>
     );
 }
 
