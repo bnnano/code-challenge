@@ -11,9 +11,10 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'bulbapedia.bulbagarden.net',
+                hostname: 'raw.githubusercontent.com',
                 port: '',
-                pathname: '/wiki/**',
+                pathname:
+                    '/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/**',
             },
         ],
     },
