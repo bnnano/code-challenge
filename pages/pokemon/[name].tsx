@@ -36,7 +36,7 @@ const PokemonDetailPage = (props: PokemonSummary) => {
     return (
         <div>
             <Image alt={name} src={imageUrl} width={200} height={200} />
-            <Typography variant="header">{titleCase(name)}</Typography>
+            <Typography variant="pageHeader">{titleCase(name)}</Typography>
             <Stack>
                 {pokemon?.types?.map?.((type: string) => (
                     <PokemonType key={type} type={type} />
