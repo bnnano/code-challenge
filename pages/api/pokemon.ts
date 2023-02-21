@@ -9,7 +9,8 @@ import {
 import { getMaxChunks, getNextChunk } from '@/utils/pokemon-chunks';
 
 export const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
-export const IMAGE_BASE_URL = 'https://img.pokemondb.net/artwork/large';
+export const IMAGE_BASE_URL =
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
 export const WIKI_URL = 'https://bulbapedia.bulbagarden.net/wiki';
 
 export async function getPokemonChunk(offset: number = 0, limit: number = 12) {
