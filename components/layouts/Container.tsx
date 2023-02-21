@@ -1,38 +1,30 @@
 import { styled } from '@/stitches.config';
 
 const Container = styled('div', {
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    display: 'grid',
+    alignItems: 'center',
     backgroundColor: '$lightGrey',
     variants: {
-        size: {
-            '1': {
-                maxWidth: '512px',
-            },
-            '2': {
-                maxWidth: '1024px',
-            },
-            '3': {
-                maxWidth: '1536px',
-            },
-            '4': {
-                maxWidth: 'none',
-            },
-        },
         padding: {
             1: {
-                paddingTop: '120px',
+                padding: '10%',
             },
             2: {
                 paddingTop: '240px',
+                paddingLeft: '10%',
+                paddingRight: '10%',
             },
             3: {
                 paddingTop: '360px',
+                paddingLeft: '10%',
+                paddingRight: '10%',
             },
         },
-    },
-    defaultVariants: {
-        size: '4',
+        center: {
+            true: {
+                justifyContent: 'center',
+            },
+        },
     },
 });
 
