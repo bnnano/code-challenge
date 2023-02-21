@@ -16,6 +16,13 @@ const nextConfig = {
                 pathname:
                     '/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'marriland.com',
+                port: '',
+                pathname:
+                    '/wp-content/plugins/marriland-core/images/pokemon/sprites/home/full/**',
+            },
         ],
     },
     async redirects() {
