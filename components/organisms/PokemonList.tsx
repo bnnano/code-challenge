@@ -9,19 +9,40 @@ import { titleCase } from '@/utils/pokemon-names';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 
-const mapPokemonDataToCardData = (pokemon: PokemonSummary): CardProps => {
+export const mapPokemonDataToCardData = (
+    pokemon: PokemonSummary | undefined
+): CardProps => {
+    if (!pokemon?.id) {
+        const displayName = 'Pokémon Not Found';
+
+        const imageProps = {
+            alt: 'unownquestion',
+            src: 'https://marriland.com/wp-content/plugins/marriland-core/images/pokemon/sprites/home/full/unown-question.png',
+            fill: true,
+        };
+        const actionSection = (
+            <Typography variant="link">No Details</Typography>
+        );
+        return {
+            id: Date.now().toString(),
+            imageProps,
+            title: displayName,
+            description: 'Pokémon was not found for the given name',
+            actionSection,
+        };
+    }
+
     const displayName = titleCase(pokemon.name);
 
     const imageProps = {
         alt: pokemon.name,
-        src: `${IMAGE_BASE_URL}/${pokemon.name}.jpg`,
-        width: 100,
-        height: 100,
+        src: `${IMAGE_BASE_URL}/${pokemon.id}.png`,
+        fill: true,
     };
     const pokemonDetailUrl = `${WIKI_URL}/${pokemon.name}`;
     const actionSection = (
         <a href={pokemonDetailUrl} rel="noreferrer" target="_blank">
-            <Typography variant="link">Details</Typography>
+            <Typography variant="link">Details →</Typography>
         </a>
     );
     return {
@@ -51,7 +72,7 @@ const PokemonList = () => {
     }, [inView, fetchNextPage]);
 
     return (
-        <SearchableContent>
+        <>
             {data?.pages.map((pokemonChunk, index) => {
                 return (
                     <Grid key={`page${index}`}>
@@ -63,8 +84,10 @@ const PokemonList = () => {
                     </Grid>
                 );
             })}
-            <div ref={ref}>Load More</div>
-        </SearchableContent>
+            <Typography variant="link" ref={ref}>
+                Loading...
+            </Typography>
+        </>
     );
 };
 
