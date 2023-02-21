@@ -15,15 +15,19 @@ const SearchBar = (props: SearchBarProps) => {
     const [inputText, setInputText] = useState('');
     const { placeholder, buttonText, onSubmit, onClear } = props;
     return (
-        <Stack>
+        <Stack
+            onKeyUp={(event) => {
+                if (event.key === 'Enter') {
+                    onSubmit(inputText);
+                }
+            }}
+        >
             <Input
                 variant="searchBar"
                 placeholder={placeholder}
-                onBlur={(e) => setInputText(e.target.value)}
                 onChange={(e) => {
-                    if (!e.target.value) {
-                        onClear();
-                    }
+                    setInputText(e.target.value);
+                    if (!e.target.value) onClear();
                 }}
             />
             <Button variant="searchButton" onClick={() => onSubmit(inputText)}>
