@@ -1,4 +1,4 @@
-import { styled } from '@stitches/react';
+import { styled } from '@/stitches.config';
 import { PropsWithChildren } from 'react';
 
 export interface InputProps {
@@ -8,6 +8,8 @@ export interface InputProps {
 const Input = styled('input', {
     height: '56px',
     border: 'none',
+    padding: '$4',
+    flexGrow: 1,
     variants: {
         variant: {
             searchBar: {
