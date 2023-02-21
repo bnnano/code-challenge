@@ -75,7 +75,7 @@ const PokemonList = () => {
         <>
             {data?.pages.map((pokemonChunk, index) => {
                 return (
-                    <Grid key={`page${index}`}>
+                    <Grid center key={`page${index}`}>
                         {pokemonChunk.pokemon
                             .map(mapPokemonDataToCardData)
                             .map((cardData: CardProps) => (
