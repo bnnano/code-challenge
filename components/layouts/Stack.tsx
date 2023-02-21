@@ -1,10 +1,4 @@
 import { styled } from '@/stitches.config';
-import { PropsWithChildren } from 'react';
-
-export interface StackProps extends PropsWithChildren {
-    direction?: 'row' | 'column';
-    alignItems?: 'start' | 'end' | 'center';
-}
 
 const Stack = styled('div', {
     display: 'flex',
