@@ -1,4 +1,4 @@
-import { styled } from '@stitches/react';
+import { styled } from '@/stitches.config';
 import { PropsWithChildren } from 'react';
 
 export interface ButtonProps extends PropsWithChildren {}
@@ -7,6 +7,7 @@ const Button = styled('button', {
     backgroundColor: '$darkestBluegrey',
     color: 'white',
     borderRadius: '8px',
+    padding: '$4',
 
     variants: {
         variant: {
