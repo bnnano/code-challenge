@@ -1,5 +1,4 @@
-import { PropsWithChildren } from 'react';
-import { styled } from '@stitches/react';
+import { styled } from '@/stitches.config';
 
 const Typography = styled('p', {
     fontWeight: 500,
