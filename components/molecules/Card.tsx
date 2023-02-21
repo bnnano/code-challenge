@@ -14,12 +14,12 @@ export interface CardProps {
 
 const CardContainer = styled(Stack, {
     flexDirection: 'column',
-    width: '320px',
 });
 
 const ImageContainer = styled(Stack, {
     position: 'relative',
-    width: '320px',
+    minWidth: '300px',
+    maxWidth: '320px',
     height: '167px',
 });
 
