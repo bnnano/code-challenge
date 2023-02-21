@@ -9,6 +9,7 @@ const Input = styled('input', {
     height: '56px',
     border: 'none',
     padding: '$4',
+    width: '100%',
     variants: {
         variant: {
             searchBar: {
