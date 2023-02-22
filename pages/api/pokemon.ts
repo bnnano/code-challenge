@@ -37,8 +37,12 @@ export async function getPokemonDataSummary(
     pokemonNamedResource: NamedResource
 ): Promise<PokemonSummary> {
     const response = await fetch(pokemonNamedResource.url);
+    if (!response.ok)
+        throw new Error('Could not find Pokémon data for given name');
     const pokemonData = await response.json();
     const speciesResponse = await fetch(pokemonData.species.url);
+    if (!speciesResponse.ok)
+        throw new Error('Could not find Pokémon species data for given name');
     const speciesData = await speciesResponse.json();
     return {
         id: pokemonData.id,
