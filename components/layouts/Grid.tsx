@@ -7,6 +7,16 @@ const Grid = styled('div', {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 320px))',
     variants: {
+        fillHeight: {
+            true: {
+                height: '100%',
+            },
+        },
+        rows: {
+            autoHeight: {
+                gridAutoRows: 'auto',
+            },
+        },
         columns: {
             1: {
                 gridTemplateColumns: 'repeat(1, 1fr)',
@@ -18,6 +28,24 @@ const Grid = styled('div', {
         center: {
             true: {
                 justifyContent: 'center',
+            },
+        },
+        alignItems: {
+            center: {
+                alignItems: 'center',
+            },
+        },
+        alignContent: {
+            spaceEvenly: {
+                alignContent: 'space-evenly',
+            },
+            spaceBetween: {
+                alignContent: 'space-between',
+            },
+        },
+        justifyItems: {
+            center: {
+                justifyItems: 'center',
             },
         },
         gap: {
