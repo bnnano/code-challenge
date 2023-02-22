@@ -8,6 +8,7 @@ import { useInfiniteQuery } from 'react-query';
 import { titleCase } from '@/utils/pokemon-names';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 export const mapPokemonDataToCardData = (
     pokemon: PokemonSummary | undefined
@@ -39,11 +40,11 @@ export const mapPokemonDataToCardData = (
         src: `${IMAGE_BASE_URL}/${pokemon.id}.png`,
         fill: true,
     };
-    const pokemonDetailUrl = `${WIKI_URL}/${pokemon.name}`;
+    const pokemonDetailUrl = `/pokemon/${pokemon.name}`;
     const actionSection = (
-        <a href={pokemonDetailUrl} rel="noreferrer" target="_blank">
+        <Link href={pokemonDetailUrl}>
             <Typography variant="link">Details →</Typography>
-        </a>
+        </Link>
     );
     return {
         id: pokemon?.id?.toString?.() ?? pokemon.name ?? Date.now(),
