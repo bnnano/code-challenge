@@ -1,5 +1,5 @@
 export function getMaxChunks(totalCount: number, chunkSize: number): number {
-    const numberOfChunks = totalCount / chunkSize;
+    const numberOfChunks = Math.floor(totalCount / chunkSize);
     const chunkRemainder = totalCount % chunkSize;
 
     return chunkRemainder > 0 ? numberOfChunks + 1 : numberOfChunks;
