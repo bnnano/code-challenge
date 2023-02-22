@@ -1,22 +1,16 @@
 import Head from 'next/head';
-import { Inter } from '@next/font/google';
-import { QueryClient, dehydrate, useQuery } from 'react-query';
+import { QueryClient, dehydrate } from 'react-query';
 import { getPokemonChunk } from './api/pokemon';
 import PageHeader from '@/components/organisms/PageHeader';
 import PokemonList from '@/components/organisms/PokemonList';
 import Container from '@/components/layouts/Container';
 import { styled } from '@/stitches.config';
 import SearchableContent from '@/components/organisms/SearchableContent';
-import { ChangeEvent } from 'react';
 import useInputStore from '@/store';
 import SinglePokemon from '@/components/organisms/SinglePokemon';
-import Grid from '@/components/layouts/Grid';
-import Stack from '@/components/layouts/Stack';
 
-const inter = Inter({ subsets: ['latin'] });
-
-const HomeContainer = styled(Container, {
-    backgroundColor: '$lightGrey',
+const StyledMain = styled('main', {
+    height: '100%',
 });
 
 export default function Home() {
@@ -37,7 +31,7 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className={inter.className}>
+            <StyledMain>
                 <PageHeader title="Bannano Frontend Challenge" />
                 <Container padding={1}>
                     <SearchableContent
@@ -53,7 +47,7 @@ export default function Home() {
                         )}
                     </SearchableContent>
                 </Container>
-            </main>
+            </StyledMain>
         </>
     );
 }
