@@ -20,6 +20,7 @@ export const mapPokemonDataToCardData = (
             alt: 'unownquestion',
             src: 'https://marriland.com/wp-content/plugins/marriland-core/images/pokemon/sprites/home/full/unown-question.png',
             fill: true,
+            sizes: '(max-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw',
         };
         const actionSection = (
             <Typography variant="link">No Details</Typography>
