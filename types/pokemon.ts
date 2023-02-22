@@ -25,7 +25,27 @@ export interface PokemonStat {
 
 export interface PokemonType {
     slot: number;
-    type: NamedResource;
+    type: NamedResource<
+        | 'normal'
+        | 'dark'
+        | 'fire'
+        | 'water'
+        | 'grass'
+        | 'electric'
+        | 'ice'
+        | 'fighting'
+        | 'poison'
+        | 'ground'
+        | 'flying'
+        | 'psychic'
+        | 'bug'
+        | 'rock'
+        | 'ghost'
+        | 'dragon'
+        | 'steel'
+        | 'fairy'
+        | undefined
+    >;
 }
 
 export interface PokeminListResponse {
@@ -44,7 +64,27 @@ export interface PokemonSpecies {
 export interface PokemonSummary {
     id: number;
     name: string;
-    types: string[];
+    types: Array<
+        | 'normal'
+        | 'dark'
+        | 'fire'
+        | 'water'
+        | 'grass'
+        | 'electric'
+        | 'ice'
+        | 'fighting'
+        | 'poison'
+        | 'ground'
+        | 'flying'
+        | 'psychic'
+        | 'bug'
+        | 'rock'
+        | 'ghost'
+        | 'dragon'
+        | 'steel'
+        | 'fairy'
+        | undefined
+    >;
     description: string;
 }
 

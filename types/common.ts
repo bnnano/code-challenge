@@ -1,4 +1,4 @@
-export interface NamedResource {
-    name: string,
-    url: string
+export interface NamedResource<T = string> {
+    name: T;
+    url: string;
 }

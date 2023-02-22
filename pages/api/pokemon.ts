@@ -52,7 +52,29 @@ export async function getPokemonDataSummary(
     };
 }
 
-export function extractPokemonTypeNames(types: PokemonType[]) {
+export function extractPokemonTypeNames(
+    types: PokemonType[]
+): Array<
+    | 'normal'
+    | 'dark'
+    | 'fire'
+    | 'water'
+    | 'grass'
+    | 'electric'
+    | 'ice'
+    | 'fighting'
+    | 'poison'
+    | 'ground'
+    | 'flying'
+    | 'psychic'
+    | 'bug'
+    | 'rock'
+    | 'ghost'
+    | 'dragon'
+    | 'steel'
+    | 'fairy'
+    | undefined
+> {
     return types?.map?.((pokemonType) => pokemonType?.type?.name) ?? [];
 }
 
