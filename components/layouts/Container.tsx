@@ -25,6 +25,16 @@ const Container = styled('div', {
                 justifyContent: 'center',
             },
         },
+        fillHeight: {
+            true: {
+                height: '100%',
+            },
+        },
+        alignContent: {
+            spaceBetween: {
+                alignContent: 'space-between',
+            },
+        },
     },
 });
 
