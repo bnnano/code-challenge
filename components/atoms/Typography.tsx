@@ -24,6 +24,11 @@ const Typography = styled('p', {
                 color: '$darkBluegrey',
             },
         },
+        textAlign: {
+            center: {
+                textAlign: 'center',
+            },
+        },
     },
 });
 
