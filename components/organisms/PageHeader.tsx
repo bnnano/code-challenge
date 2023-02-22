@@ -10,6 +10,8 @@ const HeaderContainer = styled(Stack, {
     height: '92px',
     backgroundColor: 'white',
     boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.07)',
+    zIndex: 20,
+    position: 'relative',
 });
 
 const PageHeader = (props: PageHeaderProps) => {
