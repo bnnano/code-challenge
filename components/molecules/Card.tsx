@@ -18,8 +18,8 @@ const CardContainer = styled(Stack, {
 
 const ImageContainer = styled(Stack, {
     position: 'relative',
-    minWidth: '300px',
-    maxWidth: '320px',
+    // minWidth: '300px',
+    // maxWidth: '320px',
     height: '167px',
 });
 
