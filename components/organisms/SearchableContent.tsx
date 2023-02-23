@@ -15,7 +15,12 @@ const SearchableContent = (props: SearchableContentProps) => {
     const { children, ...searchBarProps } = props;
     return (
         <Stack direction="column" gap="9">
-            <Grid columns="2">
+            <Grid
+                columns={{
+                    '@bp1': 1,
+                    '@bp2': 2,
+                }}
+            >
                 <SearchBar {...searchBarProps} />
             </Grid>
             {children}
