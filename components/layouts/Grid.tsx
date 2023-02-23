@@ -5,7 +5,6 @@ export interface GridProps extends PropsWithChildren {}
 
 const Grid = styled('div', {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 320px))',
     variants: {
         fillHeight: {
             true: {
@@ -18,11 +17,17 @@ const Grid = styled('div', {
             },
         },
         columns: {
+            fixedWidthRepeating: {
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 320px))',
+            },
             1: {
                 gridTemplateColumns: 'repeat(1, 1fr)',
             },
             2: {
                 gridTemplateColumns: 'repeat(2, 1fr)',
+            },
+            3: {
+                gridTemplateColumns: 'repeat(3, 1fr)',
             },
         },
         center: {
@@ -80,6 +85,7 @@ const Grid = styled('div', {
     },
     defaultVariants: {
         gap: 8,
+        columns: 1,
     },
 });
 
